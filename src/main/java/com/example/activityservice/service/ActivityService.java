@@ -16,8 +16,15 @@ import java.util.Optional;
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
+    private final UserValidationService userValidationService;
 
     public ActivityResponse trackActivity(ActivityRequest activityRequest) {
+
+        boolean isValidUser = userValidationService.validateUser(activityRequest.getUserId());
+        if (!isValidUser) {
+            throw new RuntimeException("Invalid User: " + activityRequest.getUserId());
+        }
+
         Activity activity = Activity.builder()
                 .userId(activityRequest.getUserId())
                 .type(activityRequest.getType())
