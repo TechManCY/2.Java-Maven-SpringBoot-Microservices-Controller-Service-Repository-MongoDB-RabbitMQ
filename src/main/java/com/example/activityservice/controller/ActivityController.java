@@ -17,7 +17,7 @@ public class ActivityController {
     private final ActivityService activityService;
 
 //    {
-//        "userId": "1",
+//        "userId": "abefe893-992a-445a-9e88-8e6d71a80eb0",
 //            "type": "RUNNING",
 //            "duration": 30,
 //            "caloriesBurned": 300,
@@ -28,6 +28,7 @@ public class ActivityController {
 //                "maxHeartRate": 165
 //    }
 //    }
+    //docker run -d --name rabbitmq_local -p 5672:5672 -p 15672:15672 rabbitmq:4-management
     @PostMapping
     public ResponseEntity<ActivityResponse> trackActivity(@RequestBody ActivityRequest activityRequest){
         return ResponseEntity.ok(activityService.trackActivity(activityRequest));
